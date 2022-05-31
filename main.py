@@ -13,9 +13,9 @@ app = FastAPI()
 
 
 
-ohe = joblib.load('C:\\Users\\pauli\\P7\\ohe.joblib')
-scaler = joblib.load ('C:\\Users\\pauli\\P7\\scaler_fit.joblib')
-model = joblib.load('C:\\Users\\pauli\\P7\\model.joblib')
+ohe = joblib.load('./ohe.joblib')
+scaler = joblib.load ('./scaler_fit.joblib')
+model = joblib.load('./model.joblib')
 seuil=0.45
 
 
@@ -29,7 +29,7 @@ def home(arg):
 @app.get("/Accord/{id_client}")
 async def accord(id_client: str):
     print(id_client)
-    dataframe = pd.read_csv('C:\\Users\\pauli\\P7\\test_api_client.csv', encoding ='utf-8')
+    dataframe = pd.read_csv('./test_api_client.csv', encoding ='utf-8')
     all_id_client = list(dataframe['SK_ID_CURR'].unique())
 
     #ID = request.args.get('id_client')

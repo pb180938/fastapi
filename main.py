@@ -19,10 +19,10 @@ model = joblib.load('./model.joblib')
 seuil=0.45
 
 
-@app.route('/')
-def home(arg):
-    print(arg)
-    return {'message':"Page d'accueil : Saisissez l'ID client dans l'url "}
+# @app.route('/')
+# def home(arg):
+#     print(arg)
+#     return {'message':"Page d'accueil : Saisissez l'ID client dans l'url "}
 
 
 # @app.get("/Accord") => Accord?id_client=XXXXX

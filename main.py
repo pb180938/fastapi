@@ -1,11 +1,8 @@
 
 from fastapi import FastAPI
-from pydantic import BaseModel, create_model
 import joblib
 import numpy as np
 import pandas as pd
-from sqlalchemy import column
-import uvicorn
 import json
 
 # Création de l'API

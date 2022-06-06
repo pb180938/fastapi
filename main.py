@@ -59,9 +59,11 @@ async def accord(id_client: str):
         X=np.concatenate([cat_array, num_array], axis=1)
         X=np.asarray(X)
 
-        probability_default_payment = model.predict_proba(X)[:, 1]
-        if probability_default_payment >= seuil:
-            prediction = "Prêt NON Accordé"
-        else:
-            prediction = "Prêt Accordé"
-        return prediction
+        
+        #probability_default_payment = model.predict_proba(X)[:, 1]
+        return json.dumps(model.predict_proba(X).tolist())
+        # if probability_default_payment >= seuil:
+        #     prediction = "Prêt NON Accordé"
+        # else:
+        #     prediction = "Prêt Accordé"
+        # return prediction

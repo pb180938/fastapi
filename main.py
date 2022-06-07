@@ -73,7 +73,7 @@ async def accord(id_client: str):
         # return prediction
         proba = model.predict_proba(ligne_client)
         #pred = int(model.predict(ligne_client)[0])
-        proba_0 = float(proba[0][0])
+        proba_1 = float(proba[0][1])
         #proba_1 = str(round(proba[0][1]*100,1)) + '%'
-        result = {'proba_0': proba_0}
+        result = {'proba_1': proba_1}
         return jsonable_encoder(result)

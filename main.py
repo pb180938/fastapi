@@ -40,24 +40,24 @@ async def accord(id_client: str):
     else :
 
         df = dataframe[dataframe['SK_ID_CURR'] == ID]
-        df['annuity_income_ratio']= df['AMT_ANNUITY'] / df['AMT_INCOME_TOTAL']
-        df['credit_annuity_ratio']= df['AMT_CREDIT'] / df['AMT_ANNUITY']
-        df['credit_goods_price_ratio']= df['AMT_CREDIT'] / df['AMT_GOODS_PRICE']
-        df['credit_downpayment']= df['AMT_GOODS_PRICE'] - df['AMT_CREDIT']
-        df['AGE_INT']= df['DAYS_BIRTH'] / -365
-        df = df.drop(['SK_ID_CURR'], axis=1)
+        # df['annuity_income_ratio']= df['AMT_ANNUITY'] / df['AMT_INCOME_TOTAL']
+        # df['credit_annuity_ratio']= df['AMT_CREDIT'] / df['AMT_ANNUITY']
+        # df['credit_goods_price_ratio']= df['AMT_CREDIT'] / df['AMT_GOODS_PRICE']
+        # df['credit_downpayment']= df['AMT_GOODS_PRICE'] - df['AMT_CREDIT']
+        # df['AGE_INT']= df['DAYS_BIRTH'] / -365
+        # df = df.drop(['SK_ID_CURR'], axis=1)
 
-        cat_features=df.select_dtypes(include=['object']).columns 
-        num_features=df.select_dtypes(include=['int64', 'float64']).columns
+        # cat_features=df.select_dtypes(include=['object']).columns 
+        # num_features=df.select_dtypes(include=['int64', 'float64']).columns
 
         
-        cat_array=ohe.transform(df[cat_features]).todense()
-        num_array=df[num_features].to_numpy()
+        # cat_array=ohe.transform(df[cat_features]).todense()
+        # num_array=df[num_features].to_numpy()
 
-        num_array =scaler.transform(num_array)
+        # num_array =scaler.transform(num_array)
 
-        X=np.concatenate([cat_array, num_array], axis=1)
-        X=np.asarray(X)
+        # X=np.concatenate([cat_array, num_array], axis=1)
+        # X=np.asarray(X)
 
         
         #probability_default_payment = model.predict_proba(X)[:, 1]

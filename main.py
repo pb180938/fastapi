@@ -35,7 +35,7 @@ async def accord(id_client: str):
 
     # On vérifie qu'il est bien dans la liste
     if ID not in all_id_client:
-        return {"Client inconnu dans la BDD"}
+        return {"Client inconnu dans la BDD : " + id_client}
 
     # Recupération des données
     else :

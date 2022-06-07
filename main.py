@@ -4,16 +4,15 @@ import joblib
 import numpy as np
 import pandas as pd
 import json
+from fastapi.encoders import jsonable_encoder
 
 # Création de l'API
 app = FastAPI()
 
 
 
-ohe = joblib.load('./ohe.joblib')
-scaler = joblib.load ('./scaler_fit.joblib')
-model = joblib.load('./model.joblib')
-seuil=0.45
+model = joblib.load('./clXGB.joblib')
+
 
 
 # @app.route('/')
@@ -26,8 +25,10 @@ seuil=0.45
 @app.get("/Accord/{id_client}")
 async def accord(id_client: str):
     print(id_client)
-    dataframe = pd.read_csv('./test_api_client.csv', encoding ='utf-8')
-    all_id_client = list(dataframe['SK_ID_CURR'].unique())
+    #dataframe = pd.read_csv('./bin/test_api_client.csv', encoding ='utf-8')
+    df_train = pd.read_csv('./df_train.csv', encoding ='utf-8')
+    df_train2 = pd.read_csv('./df_train2.csv', encoding ='utf-8')
+    all_id_client = list(df_train['SK_ID_CURR'].unique())
 
     #ID = request.args.get('id_client')
     ID = int(id_client)
@@ -39,7 +40,7 @@ async def accord(id_client: str):
     # Recupération des données
     else :
 
-        df = dataframe[dataframe['SK_ID_CURR'] == ID]
+        ligne_client = df_train2[df_train['SK_ID_CURR'] == ID]
         # df['annuity_income_ratio']= df['AMT_ANNUITY'] / df['AMT_INCOME_TOTAL']
         # df['credit_annuity_ratio']= df['AMT_CREDIT'] / df['AMT_ANNUITY']
         # df['credit_goods_price_ratio']= df['AMT_CREDIT'] / df['AMT_GOODS_PRICE']
@@ -61,9 +62,18 @@ async def accord(id_client: str):
 
         
         #probability_default_payment = model.predict_proba(X)[:, 1]
-        return json.dumps(model.predict_proba(X).tolist())
+        #return json.dumps(model.predict_proba(X).tolist())
+
+        #return json.dumps(model.predict_proba(ligne_client).tolist())
+
         # if probability_default_payment >= seuil:
         #     prediction = "Prêt NON Accordé"
         # else:
         #     prediction = "Prêt Accordé"
         # return prediction
+        proba = model.predict_proba(ligne_client)
+        #pred = int(model.predict(ligne_client)[0])
+        proba_0 = float(proba[0][0])
+        #proba_1 = str(round(proba[0][1]*100,1)) + '%'
+        result = {'proba_0': proba_0}
+        return jsonable_encoder(result)

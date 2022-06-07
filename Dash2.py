@@ -28,7 +28,7 @@ seuil=0.45
 def load_data():
 
     # Chargement du modèle pré-entrainé
-    model = pickle.load(open('../xgb_model.pkl', 'rb'))
+    #model = pickle.load(open('../xgb_model.pkl', 'rb'))
 
     # Chargement du modèle pré-entrainé	=> Appel API
     df_train = pd.read_csv('./df_train.csv', encoding='utf-8', index_col=False)
@@ -37,11 +37,11 @@ def load_data():
     # df_train=df_train.reset_index(drop=True)
 
     # Recupération des données pour modele
-    ohe = joblib.load('./bin/ohe.joblib')
-    scaler = joblib.load('./bin/scaler_fit.joblib')
+    #ohe = joblib.load('./bin/ohe.joblib')
+    #scaler = joblib.load('./bin/scaler_fit.joblib')
     #model = joblib.load('./FastAPI/bin/model.joblib')
     #clXGB
-    model = joblib.load('../clXGB.joblib')
+    model = joblib.load('./clXGB.joblib')
 
     df_train['YEARS_BIRTH']=(df_train['DAYS_BIRTH']/-365).apply(lambda x: int(x))
     # df = pd.read_csv('./bin/test_api_client.csv', encoding='utf-8')
@@ -72,7 +72,7 @@ def load_data():
     #df_train2  = pd.read_csv('../df_train2.csv', encoding ='utf-8')
 
     # Chargement des données de test après encodage
-    logo = imread("./../logo.png")
+    logo = imread("./logo.jpg")
 
     # Calcul des SHAP values
     explainer = shap.TreeExplainer(model)

@@ -193,7 +193,7 @@ def score_viz(model, df_train2, client, idx_client, exp_value, shap_values):
     st.subheader('Score du client')
 
     score, result = prediction(model, df_train2, client)
-    st.subheader(result)
+    #st.subheader(result)
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         #mode="gauge+number+delta",

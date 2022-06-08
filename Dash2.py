@@ -135,21 +135,21 @@ def tab_client(df_train):
     st.markdown("**Total clients correspondants: **"+str(len(db_display)))
 
     # Affichage en dessous des histo de répartitions
-    source = db_display
+    # source = db_display
 
-    base = alt.Chart(source)
+    # base = alt.Chart(source)
 
-    bar = base.mark_bar().encode(
-        x=alt.X('CNT_CHILDREN:Q', bin=True, axis=None),
-        y='count()'
-    )
+    # bar = base.mark_bar().encode(
+    #     x=alt.X('CNT_CHILDREN:Q', bin=True, axis=None),
+    #     y='count()'
+    # )
 
-    rule = base.mark_rule(color='red').encode(
-        x='mean(CNT_CHILDREN):Q',
-        size=alt.value(3)
-    )
+    # rule = base.mark_rule(color='red').encode(
+    #     x='mean(CNT_CHILDREN):Q',
+    #     size=alt.value(3)
+    # )
 
-    bar + rule
+    # bar + rule
 
 
 def histo_client(df):

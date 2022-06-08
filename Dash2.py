@@ -1,7 +1,7 @@
-from ast import If
-import pickle
-from pyexpat import model
-from urllib.request import proxy_bypass
+# from ast import If
+# import pickle
+# from pyexpat import model
+# from urllib.request import proxy_bypass
 import streamlit as st
 import joblib
 import streamlit.components.v1 as components
@@ -228,7 +228,7 @@ def prediction(model, df_train2, id):
     URL = "https://fast-api-scoringbancaire.herokuapp.com/Accord/" + str(id)
   
     # location given here
-    location = "delhi technological university"
+    #location = "delhi technological university"
   
     # defining a params dict for the parameters to be sent to the API
     #PARAMS = {'Accord':id}
@@ -243,7 +243,8 @@ def prediction(model, df_train2, id):
     result=r.json()
     proba_1 = result['proba_1']
     y_pred = float(proba_1)
-    decision = np.where(y_pred > seuil, "Rejected", "Approved")
+    #decision = np.where(y_pred > seuil, "Rejected", "Approved")
+    decision = np.where(y_pred > seuil, "Prêt Rejeté", "Prêt Accepté")
     
     return y_pred, decision
 

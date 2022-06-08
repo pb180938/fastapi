@@ -188,21 +188,22 @@ def filter(df, col, value):
 
 
 def score_viz(model, df_train2, client, idx_client, exp_value, shap_values):
-    """Fonction principale de l'onglet 'Score visualisation' """
+    """Fonction principale de l'onglet 'Srangecore visualisation' """
     #st.title('Dashboard Pret à dépenser')
-    st.subheader('Visualisation score')
+    st.subheader('Score du client')
 
     score, result = prediction(model, df_train2, client)
     st.subheader(result)
     fig = go.Figure(go.Indicator(
-        mode="gauge+number+delta",
+        mode="gauge+number",
+        #mode="gauge+number+delta",
         value=score,
         number={'font': {'size': 48}},
         domain={'x': [0, 1], 'y': [0, 1]},
         title={'text': result.tolist(), 'font': {'size': 28,
                                                  'color': color(result)}},
-        delta={'reference': 0.48, 'increasing': {
-            'color': "red"}, 'decreasing': {'color': 'green'}},
+        # delta={'reference': 0.48, 'increasing': {
+        #     'color': "red"}, 'decreasing': {'color': 'green'}},
         gauge={
             'axis': {'range': [0, 1], 'tickcolor': color(result)},
             'bar': {'color': color(result)},
@@ -433,7 +434,7 @@ def main():
     st.sidebar.write('')
     st.sidebar.write('')
 
-    st.sidebar.title('Dashboard Pret à dépenser')
+    st.sidebar.title('Dashboard Prêt immobilier')
     selection = st.sidebar.radio("Menu", PAGES)
 
     if selection == "Tableau des clients":
